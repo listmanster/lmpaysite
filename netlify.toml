@@ -3,3 +3,6 @@
   publish = "public"
   functions = "functions"
 
+
+[dev]
+  framework = "gatsby"
