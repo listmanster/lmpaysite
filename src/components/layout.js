@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
 
-import { Router } from '@reach/router';
+import { Router } from '@reach/router'
+import { IdentityContextProvider } from 'react-netlify-identity-widget';
+import 'react-netlify-identity-widget/styles.css';
 
 import Header from './header';
 import Container from './page-container';
 import Footer from './footer';
 
 
-
+/*
 
 const Layout = ({component:PageComponent}) => {
 
@@ -31,9 +33,9 @@ const Layout = ({component:PageComponent}) => {
     )
 };
 
+*/
 
-
-export const ContentLayout = ({children}) => {
+export const Layout = ({children}) => {
 
 
     const [menuVisible, setMenuVisible] = useState(false);
@@ -43,13 +45,13 @@ export const ContentLayout = ({children}) => {
     }
 
     return (
-        <>
+        <IdentityContextProvider url="https://lmpaysite.netlify.app">
         <Router>
-        <Header path="*" toggleMenu={toggleMenu} menuVisible={menuVisible} />
+            <Header path="*" toggleMenu={toggleMenu} menuVisible={menuVisible} />
         </Router>
-        {children}
+        <main>{children}</main>
         <Footer />
-        </>
+        </IdentityContextProvider>
     )
 };
 

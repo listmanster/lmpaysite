@@ -1,5 +1,5 @@
 import React from 'react';
-import {ContentLayout} from '../components/layout';
+import {Layout} from '../components/layout';
 
 
 
@@ -7,10 +7,10 @@ import {ContentLayout} from '../components/layout';
 
 export default () => {
     return (
-        <ContentLayout>
+        <Layout>
             <div>
                 <h1>404</h1>
             </div>
-        </ContentLayout>
+        </Layout>
     );
 }

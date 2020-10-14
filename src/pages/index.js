@@ -1,10 +1,18 @@
 import React from 'react';
+
+import {Helmet} from 'react-helmet';
+
 import Layout from '../components/layout';
-import Container from '../components/page-container';
 import Home from '../components/home';
+
 
 export default () => {
     return (
-        <Layout component={Home}/>
+        <Layout>
+            <Helmet>
+                <title>Parserbase - parsing as a service</title>
+            </Helmet>
+            <Home />
+         </Layout>
     );
 }

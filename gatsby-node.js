@@ -1,8 +1,7 @@
+/* Create MD pages */
 exports.createPages = async ({ actions, graphql, reporter }) => {
-    const { createPage } = actions
-  
-    const blogPostTemplate = require.resolve(`./src/templates/contentTemplate.js`)
-  
+    const { createPage } = actions;
+    const blogPostTemplate = require.resolve(`./src/templates/contentTemplate.js`);
     const result = await graphql(`
       {
         allMarkdownRemark(
@@ -18,8 +17,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           }
         }
       }
-    `)
-  
+    `);
+    
     // Handle errors
     if (result.errors) {
       reporter.panicOnBuild(`Error while running GraphQL query.`)
@@ -35,4 +34,16 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         },
       })
     })
+  
+};
+
+exports.onCreatePage = async ({ page, boundActionCreators }) => {
+  const { createPage } = boundActionCreators;
+
+  if (page.path.match(/^\/dashboard/)) {
+    page.matchPath = '/dashboard/*';
+
+    // Update the page.
+    createPage(page);
   }
+};
